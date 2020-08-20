@@ -36,12 +36,13 @@ export default function Programmers() {
     // It's going to utilize both slices of state to return the _name_ of the featured dev.
     // The beauty of closures is that we can "see" both slices of state from this region
     // of the program, without needing to inject the information through arguments.
+    return 
   };
 
   const style = {
-    fontSize: '1.5em',
-    marginTop: '0.5em',
-    color: 'royalblue', // 🤔
+    fontSize: "1.5em",
+    marginTop: "0.5em",
+    color: id ? "orange" : "royalblue" // 🤔
   };
 
   return (
@@ -54,7 +55,8 @@ export default function Programmers() {
           we could never add or edit programmers in the future. The list would be a static thing." */
           programmers.map(dev =>
             <div key={dev.id}>
-              {dev.name} <button onClick={() => { /* in here set the featured id to be dev.id */ }}>Feature</button>
+              {/* {console.log(id)}; */}
+              {dev.name} <button onClick={() => { setId(dev.id) }}>Feature</button>
             </div>
           )
         }
@@ -63,7 +65,7 @@ export default function Programmers() {
         // Ternaries are fantastic to render "one thing or the other" depending on the "truthiness" of something.
         // Pseudo-code: if the currently featured id is truthy render div 1, otherwise render div 2.
         // Replace the hard-coded false with the correct variable.
-        false
+        id
           ? <div style={style}>🎉 Let&apos;s celebrate {getNameOfFeatured()}! 🥳</div>
           : <div style={style}>Pick an awesome programmer</div>
       }
